@@ -16,9 +16,13 @@ public class Personne extends Stockage implements Serializable {
     public LinkedList<String> fratrie;
 
     Personne() {
+        this.id = String.valueOf(genererIdentifiant(1000, 9999));
     }
 
     Personne(String nom, String prenom, String sexe, String dateNaissance, String parent) {
+        if (this.id == "") {
+            this.id = String.valueOf(genererIdentifiant(1000, 9999));
+        }
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -38,11 +42,14 @@ public class Personne extends Stockage implements Serializable {
 
     public void ajouterFratrie(Personne personne){
         this.fratrie.add(personne.id);
-        Stockage stockage = new Stockage();
-        int stockerPersonne = stockage.stockerPersonne(this);
     }
-    
 
-    
+    private int genererIdentifiant(int borneInf, int borneSup){
+        Random random = new Random();
+        int nb;
+        nb = borneInf+random.nextInt(borneSup-borneInf);
+        return nb;
+     }
+
 
 }
