@@ -98,7 +98,7 @@ public class stockage {
         return confirmation;
     }
 
-    public Personne [] recupererPersonnes(String [] ids) {
+    public static Personne [] recupererPersonnes(String [] ids) {
         Personne [] personnes = {};
         for (int i = 0; i < ids.length; i++) {
             String id = ids[i];
