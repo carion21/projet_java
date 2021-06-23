@@ -2,19 +2,28 @@ import java.util.Scanner;
 
 public class Menu {
 	
-	
+
 	public static void main(String[] args) {
-	
-	int monChoix;
+
+		Scanner sc = new Scanner(System.in);
+		int monChoix;
 	// Menu Accueil
+
 	MenuClass.afficherAcc();
 	
 	   while(true)
 	   {
+		   stockage.initialisation();
 		   monChoix = MenuClass.choix();
 		   switch(monChoix)
 		   {
-				case 1 :break;
+				case 1 :{
+					MenuClass.effacer();
+					creation.creation_arbre();
+					System.out.println(ConsoleColors.GREEN_UNDERLINED+"SUCCES"+ConsoleColors.RESET);
+					MenuClass.retour_princ();
+					break;
+				}
 				case 2 : 
 				{	// Menu Modifier Arbre
 					MenuClass.afficheModif();

@@ -6,49 +6,60 @@ import java.util.*;
 /**
  * Classe Personne
  */
-public class Personne {
+public class Personne implements Serializable {
     public String id;
     public String arbre;
     public String nom;
     public String prenom;
     public String sexe;
-    public Date dateNaissance;
+    public Long dateNaissance;
     public String parent;
     public LinkedList<String> enfants;
     public LinkedList<String> fratrie;
 
     Personne() {
-        this.id = genererId(1000, 9999);
+        id = null;
+        arbre = null;
+        nom = null;
+        prenom = null;
+        sexe = null;
+        dateNaissance = null;
     }
 
-    Personne(String nom, String prenom, String sexe,String arbre, String dateNaissance, String parent) throws Exception{
-
-        this.id = genererId(1000, 9999);
+    Personne(String nom, String prenom, String sexe,String arbre, Long dateNaissance, String parent){
+        this.id = genererId();
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
-        this.dateNaissance = new SimpleDateFormat("dd/MM/yyyy").parse(dateNaissance) ;
+        this.dateNaissance = dateNaissance ;
         this.parent = parent;
         this.arbre = arbre;
     }
 
-    Personne(String nom, String prenom, String arbre, String sexe, String dateNaissance) throws Exception{
 
-        this.id = genererId(1000, 9999);
+    Personne(String nom, String prenom, String arbre, String sexe, Long dateNaissance){
+
+        this.id = genererId();
 
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
-        this.dateNaissance = new SimpleDateFormat("dd/MM/yyyy").parse(dateNaissance);
         this.arbre = arbre;
+
+        this.dateNaissance = dateNaissance;
+
     }
 
-    public int  ajouterParent(String idParent){
+    public int ajouterParent(String idParent){
         if(!(this.parent.equals(""))){
-            if (stockage.recupererPersonne(idParent).dateNaissance.getYear() - dateNaissance.getYear() == 15){
-                this.parent = idParent;
+            if (stockage.recupererPersonne(idParent).dateNaissance - dateNaissance <12){
+                System.out.println("Le parent doit avoir plus de 12 ans.");
+                return -1;
             }
-            else return -1;
+            this.parent = idParent;
+        }
+        else{
+            System.out.println("Cette personne a déjà un parent");
         }
         return 1;
     }
@@ -63,7 +74,7 @@ public class Personne {
            Personne enfantadd = stockage.recupererPersonne(id);
            Personne aine = stockage.recupererPersonne(aine_id);
 
-           if(aine.dateNaissance.getYear() > enfantadd.dateNaissance.getYear()){
+           if(aine.dateNaissance > enfantadd.dateNaissance){
                enfants.addFirst(id);
            }
            else{
@@ -143,10 +154,12 @@ public class Personne {
         return nb;
     }*/
 
-    public String genererId(int binf, int bsup){
-        Random random = new Random();
-        id = String.valueOf(random.nextInt(bsup-binf));
-        return id;
+    public String genererId() {
+        Random rand = new Random(); //instance of random class
+        int upperbound = 1000;
+
+        String generatedString = String.valueOf(rand.nextInt(upperbound));
+        return generatedString;
     }
 
     public static void main(String[] args) {

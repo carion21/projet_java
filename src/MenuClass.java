@@ -17,7 +17,7 @@ public class MenuClass {
 		System.out.println("\t|  *****************     ******************  **                     **    ******************   **                    **   |");
 		System.out.println("\t--------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("\t==========================================================================================================================");
-		System.out.print("                       1.Initialiser un arbre  ");
+		System.out.print("                       1.Creer un arbre  ");
 		System.out.print("  2.Modifier un arbre  ");
 		System.out.print("  3.Consulter un arbre  ");
 		System.out.println("  4.Quitter  ");
@@ -28,11 +28,10 @@ public class MenuClass {
 	static int choix()
 	
 	{	
-		System.out.print("ENTREZ UN CHOIX  : ");
+		System.out.print("Votre choix  : ");
 		Scanner sc = new Scanner(System.in);
 		
-		int choix = 0;
-		choix = sc.nextInt();
+		int choix = sc.nextInt();
 		return choix;
 	}
 	// fonction modifier
@@ -51,7 +50,11 @@ public class MenuClass {
 			int monChoix1 = choix();
 			switch(monChoix1)
 			{
-			case 1 : break;
+			case 1 : {
+				String id  = listing.liste_arbre();
+				creation.creation_personne(id);
+				break;
+			}
 			case 2 : break;
 			case 3 : break;
 			case 4: break;
@@ -99,4 +102,19 @@ public class MenuClass {
 		}
 	}
 
+	static void retour_princ(){
+		System.out.println("0. retour");
+		int choix = choix();
+		if(choix == 0){
+			afficherAcc();
+		}
+	}
+	static void effacer(){
+		try {
+			Runtime.getRuntime().exec("clear");
+		}
+		catch (Exception e){
+			System.out.println("error!");
+		}
+	}
 }
