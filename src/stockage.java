@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class stockage {
 
-    stockage() {
+    static int initialisation() {
         File rep = new File("data/arbres");
         File rep1 = new File("data/personnes");
         if(!(rep.exists())) {
@@ -17,18 +17,33 @@ public class stockage {
             rep1.mkdir();
         }
 
-
+        return 1;
     }
     public static String search_file(String id){
         File dir = new File("data/personnes") ;
         String [] liste =  dir.list();
         String path="";
         for(String c:liste){
-            if(c.matches("."+id+".")){
-                path = c;
+            if(c.contains("."+id+".dat")){
+                path = "data/personnes/"+c;
+
             }
         }
         return path;
+    }
+    public static ArrayList<String> search_file_pers(String id){
+        File dir = new File("data/personnes") ;
+        String [] liste =  dir.list();
+
+        ArrayList<String> l_path= new ArrayList<>();
+        for(String c:liste){
+            if(c.contains(id+".")){
+                l_path.add("data/personnes/"+c) ;
+
+
+            }
+        }
+        return l_path;
     }
     //lever les erreurs
     public static int stockerArbre(arbre a)  {
@@ -41,7 +56,7 @@ public class stockage {
             fos.close();
         }
         catch (Exception e){
-            System.out.println(e);
+            System.out.println("error!");
         }
      return 1;
     }
@@ -71,7 +86,7 @@ public class stockage {
             try {
                 FileInputStream fis = new FileInputStream(filename);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                personne = (Personne) ois.readObject();
+                personne = ((Personne) ois.readObject());
                 fis.close();
                 ois.close();
 
@@ -82,6 +97,25 @@ public class stockage {
         }
         return personne;
         }
+
+    public static arbre recupererArbre(String id) {
+
+        String filename = "data/arbres/"+id+".dat";
+        arbre a = new arbre();
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            a = ((arbre) ois.readObject());
+            fis.close();
+            ois.close();
+
+            } catch (Exception e) {
+                System.out.println(e);
+                return null;
+            }
+
+        return a;
+    }
 
     public int stockerPersonnes(Personne [] personnes) {
         int confirmation = 1;
@@ -106,6 +140,41 @@ public class stockage {
             personnes[i] = personne;
         }
         return personnes;
+    }
+    public static ArrayList<arbre> liste_arbres(){
+        ArrayList<arbre> liste = new ArrayList<>();
+        File rep = new File("data/arbres");
+        for(File fichier : rep.listFiles()){
+            try {
+                FileInputStream fich = new FileInputStream(fichier);
+                ObjectInputStream ois = new ObjectInputStream(fich);
+                liste.add((arbre)ois.readObject());
+            }
+            catch (Exception e){ System.out.println("error!");}
+
+        }
+        return liste;
+    }
+
+    public static ArrayList<Personne> liste_personne(String id){
+        ArrayList<Personne> liste = new ArrayList<>();
+
+        for(String path : search_file_pers(id)){
+            try {
+                FileInputStream fich = new FileInputStream(path);
+                ObjectInputStream ois = new ObjectInputStream(fich);
+                liste.add((Personne) ois.readObject());
+            }
+            catch (Exception e){ System.out.println("error!");}
+
+        }
+        return liste;
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println(search_file("699"));
     }
 }
 
