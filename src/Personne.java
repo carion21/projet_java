@@ -26,7 +26,7 @@ public class Personne implements Serializable {
         dateNaissance = null;
     }
 
-    Personne(String nom, String prenom, String sexe,String arbre, Long dateNaissance, String parent) throws Exception{
+    Personne(String nom, String prenom, String sexe,String arbre, Long dateNaissance, String parent){
         this.id = genererId();
         this.nom = nom;
         this.prenom = prenom;
@@ -35,7 +35,9 @@ public class Personne implements Serializable {
         this.parent = parent;
         this.arbre = arbre;
     }
-    Personne(String nom, String prenom, String arbre, String sexe, Long dateNaissance) {
+
+
+    Personne(String nom, String prenom, String arbre, String sexe, Long dateNaissance){
 
         this.id = genererId();
 
@@ -62,8 +64,8 @@ public class Personne implements Serializable {
         return 1;
     }
 
-
-    public int ajouterEnfant(String id){
+    @Deprecated
+    public int ajouterEnfant1(String id){
         if (enfants.isEmpty()){
             enfants.add(id);
         }
@@ -81,6 +83,64 @@ public class Personne implements Serializable {
 
         }
         return 1;
+    }
+
+    public int ajouterEnfant(String id){
+        int reponse = 0;
+        int n = this.enfants.size();
+        if (n == 0){
+            this.enfants.add(id);
+            reponse = 1;
+        }else {
+            String [] ides = {};
+            for (int i = 0; i < n; i++) {
+                ides[i] = this.enfants.get(i);
+            }
+
+            Integer [] annees = {};
+            Personne [] personnes = stockage.recupererPersonnes(ides);
+            for (int i = 0; i < n; i++) {
+                annees[i] = personnes[i].dateNaissance.getYear();
+            }
+
+            List<Integer> lAnnees = Arrays.asList(annees);
+            List<Personne> lPersonnes = Arrays.asList(personnes);
+            LinkedList<String> enfts = new LinkedList<>();
+
+            for (int i = 0; i < n; i++) {
+                Integer [] tAnnees =  (Integer []) lAnnees.toArray();
+                Personne [] tPersonnes = (Personne []) lPersonnes.toArray();
+                int anneeMin = min(tAnnees);
+                String idper = searchPersonneByAnnee(tPersonnes, anneeMin);
+                enfts.add(idper);
+                lAnnees.remove(i);
+                lPersonnes.remove(i);
+            }
+
+            this.enfants = null;
+            this.enfants = enfts;
+            reponse = 1;
+        }
+        return reponse;
+    }
+
+    public int min(Integer [] integers){
+        int minVal = Integer.MIN_VALUE;
+        for (Integer valeur : integers) {
+            if(valeur > minVal)
+                minVal = valeur;
+        }
+        return minVal;
+    }
+
+    public String searchPersonneByAnnee(Personne [] personnes , int annee){
+        String idPers = "";
+        for (Personne p : personnes) {
+            if (p.dateNaissance.getYear() == annee) {
+                idPers = p.id;
+            }
+        }
+        return idPers;
     }
 
     public void ajouterFratrie(String id){
