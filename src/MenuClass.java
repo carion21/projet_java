@@ -85,7 +85,10 @@ public class MenuClass {
 				if(sexe.equals("*")){
 					sexe = p.sexe;
 				}
-				p.update(nom, prenom, sexe);
+				int a = p.update(nom, prenom, sexe);
+				if (a == 1){
+					System.out.println("SUCCES");
+				}
 				break;
 			}
 			case 4: break;
