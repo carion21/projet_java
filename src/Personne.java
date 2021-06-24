@@ -169,8 +169,10 @@ public class Personne implements Serializable {
         return generatedString;
     }
 
-    public void update(){
-
+    public void update(String nom, String prenom, String sexe){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
     }
 
     public static void main(String[] args) {

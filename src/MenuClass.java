@@ -66,7 +66,28 @@ public class MenuClass {
 				listing.liste_personne(id);
 				System.out.println("Entrer l'id: ");
 				String id_pers = sc.nextLine();
-				break;}
+				Personne p = stockage.recupererPersonne(id_pers);
+				System.out.println("Entrer * pour les champs qui ne changent pas.");
+				System.out.println("nom: ");
+				String nom = sc.nextLine();
+				if(nom.equals("*")){
+					nom = p.nom;
+				}
+
+				System.out.println("prenoms: ");
+				String prenom = sc.nextLine();
+				if(prenom.equals("*")){
+					prenom = p.prenom;
+				}
+
+				System.out.println("Sexe: ");
+				String sexe = sc.nextLine();
+				if(sexe.equals("*")){
+					sexe = p.sexe;
+				}
+				p.update(nom, prenom, sexe);
+				break;
+			}
 			case 4: break;
 			case 5 : 
 				System.exit(0);
