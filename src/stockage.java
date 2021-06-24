@@ -92,7 +92,6 @@ public class stockage {
 
             } catch (Exception e) {
                 System.out.println(e);
-                return null;
             }
         }
         return personne;
@@ -134,10 +133,12 @@ public class stockage {
 
     public static Personne [] recupererPersonnes(String [] ids) {
         Personne [] personnes = {};
-        for (int i = 0; i < ids.length; i++) {
-            String id = ids[i];
-            Personne personne = recupererPersonne(id);
-            personnes[i] = personne;
+       int j = 0;
+        for (String i : ids) {
+
+            Personne personne = recupererPersonne(i);
+            personnes[j] = personne;
+            j+=1;
         }
         return personnes;
     }

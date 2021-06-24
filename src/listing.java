@@ -23,7 +23,7 @@ public class listing {
         System.out.println("\t\t Liste des personnes de la familles");
         for (Personne p: liste ) {
 
-            System.out.println(p.id+"\t"+"Famille "+"\t"+p.nom+" "+p.prenom+"\t"+p.dateNaissance);
+            System.out.println(p.id+"\t"+p.nom+" "+p.prenom+"\t"+p.dateNaissance);
         }
 
         System.out.println("Entrer l'ID du parent: ");

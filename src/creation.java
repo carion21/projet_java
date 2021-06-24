@@ -51,17 +51,20 @@ public class creation {
         String  sexe = sc.nextLine();
         System.out.println("Année de naissance: ");
         Long naissance = sc.nextLong();
-        while (naissance < p.dateNaissance){
+        while (naissance <= p.dateNaissance){
             System.out.println("Erreur! Cette personne est plus agée que son ancêtre");
             System.out.println("Entrez une année supérieure à "+p.dateNaissance);
             naissance = sc.nextLong();
         }
         Personne pers = new Personne(nom, prenom, id, sexe, naissance);
-        System.out.println("Voulez-vous ajouter un parent?(O/N) ");
-        String choix = sc.nextLine();
-        if(choix.equals("O") ){
+        System.out.println(pers.parent);
+        System.out.println(pers.enfants.isEmpty());
+        System.out.println("Voulez-vous ajouter un parent?(1/0): ");
+        int c = sc.nextInt();
+        if(c == 1){
            String id_parent = listing.liste_personne(id);
-            lien.pere_fils(pers,id_parent);
+           lien.pere_fils(pers,id_parent);
+            //System.out.println("ok");
         }
         stockage.stockerPersonne(pers);
         //return p.id;
