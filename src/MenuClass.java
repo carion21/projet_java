@@ -37,6 +37,7 @@ public class MenuClass {
 	// fonction modifier
 	static void afficheModif()
 	{
+		String id  = listing.liste_arbre();
 		System.out.println("__________________________________________________________________________________________________________________________________");
 		System.out.print("                1. Ajouter une personne");
 		System.out.print(" 2. Editer un lien de parenter");
@@ -51,12 +52,21 @@ public class MenuClass {
 			switch(monChoix1)
 			{
 			case 1 : {
-				String id  = listing.liste_arbre();
+
 				creation.creation_personne(id);
 				break;
 			}
-			case 2 : break;
-			case 3 : break;
+			case 2 : {
+				lien.edit_lien(id);
+				break;
+			}
+
+			case 3 : {
+				Scanner sc = new Scanner(System.in);
+				listing.liste_personne(id);
+				System.out.println("Entrer l'id: ");
+				String id_pers = sc.nextLine();
+				break;}
 			case 4: break;
 			case 5 : 
 				System.exit(0);
