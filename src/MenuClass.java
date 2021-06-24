@@ -146,6 +146,7 @@ public class MenuClass {
 	static void effacer(){
 		try {
 			Runtime.getRuntime().exec("clear");
+
 		}
 		catch (Exception e){
 			System.out.println("error!");

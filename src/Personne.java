@@ -64,9 +64,6 @@ public class Personne implements Serializable {
             }
             this.parent = idParent;
         }
-        else{
-            System.out.println("Cette personne a déjà un parent");
-        }
         //return 1;
     }
 
@@ -152,6 +149,14 @@ public class Personne implements Serializable {
     public void ajouterFratrie(String id){
         this.fratrie.add(id);
     }
+   /* public void ajouterFratrie1(LinkedList ids){
+        for (String i:ids){
+            if(!(fratrie.contains(i))){
+                this.fratrie.add(id);
+            }
+        }
+
+    }*/
     /*
     public int genererIdentifiant(int borneInf, int borneSup){
         Random random = new Random();
