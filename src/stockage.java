@@ -14,6 +14,7 @@ public class stockage {
         if (!(dir.exists())){
             dir.mkdir();
         }
+
         if(!(rep.exists())) {
             rep.mkdir();
         }
