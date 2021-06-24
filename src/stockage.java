@@ -20,7 +20,6 @@ public class stockage {
         if(!(rep1.exists())) {
             rep1.mkdir();
         }
-
         return 1;
     }
     public static String search_file(String id){
