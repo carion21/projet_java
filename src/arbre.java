@@ -30,10 +30,7 @@ public class arbre implements Serializable {
         int lowerbound = 100;
         int upperbound = 10000;
 
-        String generatedString = String.valueOf(rand.nextInt(upperbound - lowerbound)+1);
-        double double_random=rand.nextDouble();
-        float float_random=rand.nextFloat();
-
+        String generatedString = String.valueOf(rand.nextInt(upperbound - lowerbound));
 
         return generatedString;
     }

@@ -1,4 +1,5 @@
 import java.io.*;
+import  java.text.SimpleDateFormat;
 
 import java.util.*;
 
@@ -23,6 +24,9 @@ public class Personne implements Serializable {
         prenom = null;
         sexe = null;
         dateNaissance = null;
+        //parent = "";
+        enfants = new LinkedList<>();
+        fratrie = new LinkedList<>();
     }
 
     Personne(String nom, String prenom, String sexe,String arbre, Long dateNaissance, String parent){
@@ -33,6 +37,8 @@ public class Personne implements Serializable {
         this.dateNaissance = dateNaissance ;
         this.parent = parent;
         this.arbre = arbre;
+        enfants = new LinkedList<>();
+        fratrie = new LinkedList<>();
     }
 
 
@@ -44,23 +50,24 @@ public class Personne implements Serializable {
         this.prenom = prenom;
         this.sexe = sexe;
         this.arbre = arbre;
-
         this.dateNaissance = dateNaissance;
-
+        enfants = new LinkedList<>();
+        fratrie = new LinkedList<>();
+        //parent="";
     }
 
-    public int ajouterParent(String idParent){
-        if(!(this.parent.equals(""))){
-            if (stockage.recupererPersonne(idParent).dateNaissance - dateNaissance <12){
+    public void ajouterParent(String idParent){
+        if(this.parent==null){
+            if (dateNaissance - stockage.recupererPersonne(idParent).dateNaissance  <12){
                 System.out.println("Le parent doit avoir plus de 12 ans.");
-                return -1;
+               // return -1;
             }
             this.parent = idParent;
         }
         else{
             System.out.println("Cette personne a déjà un parent");
         }
-        return 1;
+        //return 1;
     }
 
     @Deprecated
@@ -87,7 +94,7 @@ public class Personne implements Serializable {
     public int ajouterEnfant(String id){
         int reponse = 0;
         int n = this.enfants.size();
-        if (n == 0){
+        if (enfants.isEmpty()){
             this.enfants.add(id);
             reponse = 1;
         }else {
@@ -107,7 +114,7 @@ public class Personne implements Serializable {
             LinkedList<String> enfts = new LinkedList<>();
 
             for (int i = 0; i < n; i++) {
-                Integer [] tAnnees =  (Integer []) lAnnees.toArray();
+                Long [] tAnnees =  (Long []) lAnnees.toArray();
                 Personne [] tPersonnes = (Personne []) lPersonnes.toArray();
                 int anneeMin = min(tAnnees);
                 String idper = searchPersonneByAnnee(tPersonnes, anneeMin);
@@ -116,18 +123,18 @@ public class Personne implements Serializable {
                 lPersonnes.remove(i);
             }
 
-            this.enfants = null;
+            this.enfants.clear();
             this.enfants = enfts;
             reponse = 1;
         }
         return reponse;
     }
 
-    public int min(Integer [] integers){
+    public int min(Long[] integers){
         int minVal = Integer.MIN_VALUE;
-        for (Integer valeur : integers) {
+        for (Long valeur : integers) {
             if(valeur > minVal)
-                minVal = valeur;
+                minVal = Math.toIntExact((Long) valeur);
         }
         return minVal;
     }
@@ -155,9 +162,10 @@ public class Personne implements Serializable {
 
     public String genererId() {
         Random rand = new Random(); //instance of random class
-        int upperbound = 1000;
+        int lowerbound = 100;
+        int upperbound = 10000;
 
-        String generatedString = String.valueOf(rand.nextInt(upperbound));
+        String generatedString = String.valueOf(rand.nextInt(upperbound-lowerbound));
         return generatedString;
     }
 
