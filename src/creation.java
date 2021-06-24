@@ -25,7 +25,7 @@ public class creation {
         String prenom = sc.nextLine();
         System.out.println("Sexe: ");
         String  sexe = sc.nextLine();
-        System.out.println("Année de naissance: ");
+        System.out.println("Annee de naissance: ");
         Long naissance = sc.nextLong();
         Personne p = new Personne(nom, prenom, a.id, sexe, naissance);
         System.out.println(p.nom+""+p.prenom);
@@ -49,7 +49,7 @@ public class creation {
         String prenom = sc.nextLine();
         System.out.println("Sexe: ");
         String  sexe = sc.nextLine();
-        System.out.println("Année de naissance: ");
+        System.out.println("Annee de naissance: ");
         String naiss= sc.nextLine();
         while (Long.parseLong(naiss) <= p.dateNaissance){
             System.out.println("Erreur! Cette personne est plus agée que son ancêtre");

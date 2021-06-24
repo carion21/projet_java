@@ -6,7 +6,9 @@ public class Menu {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		int monChoix;
+		int monChoix=0;
+		int cpt =1 ;
+		int val;
 	// Menu Accueil
 
 	MenuClass.afficherAcc();
@@ -18,7 +20,7 @@ public class Menu {
 		   switch(monChoix)
 		   {
 				case 1 :{
-					MenuClass.effacer();
+					//MenuClass.effacer();
 					creation.creation_arbre();
 					System.out.println(ConsoleColors.GREEN_UNDERLINED+"SUCCES"+ConsoleColors.RESET);
 					MenuClass.retour_princ();
@@ -29,7 +31,7 @@ public class Menu {
 					MenuClass.afficheModif();
 					
 				}
-				
+				break;
 				case 3 : 
 					// Menu afficher Arbre
 					MenuClass.afficherCons();
