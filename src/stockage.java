@@ -8,12 +8,22 @@ import java.util.*;
 public class stockage {
 
     static int initialisation() {
+<<<<<<< HEAD
         File dir = new File("data");
         File rep = new File("data/arbres");
         File rep1 = new File("data/personnes");
         if (!(dir.exists())){
             dir.mkdir();
         }
+=======
+    	File dir = new File("data");
+        File rep = new File("data/arbres");
+        File rep1 = new File("data/personnes");
+        if(!(dir.exists())) {
+        	dir.mkdir();
+        }
+        
+>>>>>>> a2f7299d4f690e96ef1c2e081fa15569ffa9eb6f
         if(!(rep.exists())) {
             rep.mkdir();
         }
