@@ -1,5 +1,4 @@
 import java.io.*;
-import  java.text.SimpleDateFormat;
 
 import java.util.*;
 
@@ -97,13 +96,13 @@ public class Personne implements Serializable {
                 ides[i] = this.enfants.get(i);
             }
 
-            Integer [] annees = {};
+            Long [] annees = {};
             Personne [] personnes = stockage.recupererPersonnes(ides);
             for (int i = 0; i < n; i++) {
-                annees[i] = personnes[i].dateNaissance.getYear();
+                annees[i] = personnes[i].dateNaissance;
             }
 
-            List<Integer> lAnnees = Arrays.asList(annees);
+            List<Long> lAnnees = Arrays.asList(annees);
             List<Personne> lPersonnes = Arrays.asList(personnes);
             LinkedList<String> enfts = new LinkedList<>();
 
@@ -136,7 +135,7 @@ public class Personne implements Serializable {
     public String searchPersonneByAnnee(Personne [] personnes , int annee){
         String idPers = "";
         for (Personne p : personnes) {
-            if (p.dateNaissance.getYear() == annee) {
+            if (p.dateNaissance == annee) {
                 idPers = p.id;
             }
         }
