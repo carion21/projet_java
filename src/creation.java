@@ -60,15 +60,13 @@ public class creation {
         Personne pers = new Personne(nom, prenom, id, sexe, naissance);
         System.out.println(pers.parent);
         System.out.println(pers.enfants.isEmpty());
-        System.out.println("Voulez-vous ajouter un parent?(O/N): ");
-        String  c = sc.nextLine();
-        if(c.equals("O")){
-            listing.liste_personne(id);
-            System.out.println("Entrer l'ID du parent");
-            String id_p = sc.nextLine();
-            lien.pere_fils(pers,id_p);
-            //System.out.println("ok");
-        }
+        System.out.println("Choix du parent ");
+
+        listing.liste_personne(id);
+        System.out.println("Entrer l'ID du parent");
+        String id_p = sc.nextLine();
+        lien.pere_fils(pers,id_p);
+        //System.out.println("ok");
         stockage.stockerPersonne(pers);
         //return p.id;
 

@@ -64,9 +64,6 @@ public class Personne implements Serializable {
             }
             this.parent = idParent;
         }
-        else{
-            System.out.println("Cette personne a déjà un parent");
-        }
         //return 1;
     }
 
@@ -152,6 +149,14 @@ public class Personne implements Serializable {
     public void ajouterFratrie(String id){
         this.fratrie.add(id);
     }
+   /* public void ajouterFratrie1(LinkedList ids){
+        for (String i:ids){
+            if(!(fratrie.contains(i))){
+                this.fratrie.add(id);
+            }
+        }
+
+    }*/
     /*
     public int genererIdentifiant(int borneInf, int borneSup){
         Random random = new Random();
@@ -169,10 +174,11 @@ public class Personne implements Serializable {
         return generatedString;
     }
 
-    public void update(String nom, String prenom, String sexe){
+    public int update(String nom, String prenom, String sexe){
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
+        return 1;
     }
 
     public static void main(String[] args) {

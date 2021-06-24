@@ -8,20 +8,19 @@ import java.util.*;
 public class stockage {
 
     static int initialisation() {
-    	File dir = new File("data");
+        File dir = new File("data");
         File rep = new File("data/arbres");
         File rep1 = new File("data/personnes");
-        if(!(dir.exists())) {
-        	dir.mkdir();
+        if (!(dir.exists())){
+            dir.mkdir();
         }
-        
+
         if(!(rep.exists())) {
             rep.mkdir();
         }
         if(!(rep1.exists())) {
             rep1.mkdir();
         }
-
         return 1;
     }
     public static String search_file(String id){

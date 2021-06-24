@@ -107,6 +107,12 @@ public class MenuClass {
 					System.out.println("Veuillez entrez un nombre entre 1-5");
 					;
 				}
+				int a = p.update(nom, prenom, sexe);
+				if (a == 1){
+					System.out.println("SUCCES");
+				}
+				break;
+
 			}
 			else
 			{
@@ -238,6 +244,7 @@ public class MenuClass {
 	/*static void effacer(){
 		try {
 			Runtime.getRuntime().exec("clear");
+
 		}
 		catch (Exception e){
 			System.out.println("error!");
