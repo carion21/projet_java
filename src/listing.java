@@ -17,7 +17,7 @@ public class listing {
        return  sc.nextLine();
     }
 
-    public  static  String liste_personne(String id){
+    public  static  void liste_personne(String id){
         Scanner sc = new Scanner(System.in);
         ArrayList<Personne> liste = stockage.liste_personne(id);
         System.out.println("\t\t Liste des personnes de la familles");
@@ -26,9 +26,7 @@ public class listing {
             System.out.println(p.id+"\t"+p.nom+" "+p.prenom+"\t"+p.dateNaissance);
         }
 
-        System.out.println("Entrer l'ID du parent: ");
 
-        return  sc.nextLine();
     }
 
 

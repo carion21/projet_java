@@ -62,7 +62,9 @@ public class creation {
         System.out.println("Voulez-vous ajouter un parent?(1/0): ");
         int c = sc.nextInt();
         if(c == 1){
-           String id_parent = listing.liste_personne(id);
+            listing.liste_personne(id);
+            System.out.println("Entrer l'ID du parent");
+            String id_parent = sc.nextLine();
            lien.pere_fils(pers,id_parent);
             //System.out.println("ok");
         }

@@ -169,6 +169,10 @@ public class Personne implements Serializable {
         return generatedString;
     }
 
+    public void update(){
+
+    }
+
     public static void main(String[] args) {
 
     }
