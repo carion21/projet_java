@@ -50,22 +50,23 @@ public class creation {
         System.out.println("Sexe: ");
         String  sexe = sc.nextLine();
         System.out.println("Année de naissance: ");
-        Long naissance = sc.nextLong();
-        while (naissance <= p.dateNaissance){
+        String naiss= sc.nextLine();
+        while (Long.parseLong(naiss) <= p.dateNaissance){
             System.out.println("Erreur! Cette personne est plus agée que son ancêtre");
             System.out.println("Entrez une année supérieure à "+p.dateNaissance);
-            naissance = sc.nextLong();
+            naiss = sc.nextLine();
         }
+        Long naissance = Long.parseLong(naiss);
         Personne pers = new Personne(nom, prenom, id, sexe, naissance);
         System.out.println(pers.parent);
         System.out.println(pers.enfants.isEmpty());
-        System.out.println("Voulez-vous ajouter un parent?(1/0): ");
-        int c = sc.nextInt();
-        if(c == 1){
+        System.out.println("Voulez-vous ajouter un parent?(O/N): ");
+        String  c = sc.nextLine();
+        if(c.equals("O")){
             listing.liste_personne(id);
             System.out.println("Entrer l'ID du parent");
-            String id_parent = sc.nextLine();
-           lien.pere_fils(pers,id_parent);
+            String id_p = sc.nextLine();
+            lien.pere_fils(pers,id_p);
             //System.out.println("ok");
         }
         stockage.stockerPersonne(pers);
