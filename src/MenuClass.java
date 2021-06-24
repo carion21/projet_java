@@ -108,13 +108,20 @@ public class MenuClass {
 					;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 72190ed16bb1514571bade6f4cb789bea2e03b5c
 				int a = p.update(nom, prenom, sexe);
 				if (a == 1){
 					System.out.println("SUCCES");
 				}
 				break;
+<<<<<<< HEAD
 =======
 >>>>>>> a2f7299d4f690e96ef1c2e081fa15569ffa9eb6f
+=======
+
+>>>>>>> 72190ed16bb1514571bade6f4cb789bea2e03b5c
 			}
 			else
 			{

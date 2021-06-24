@@ -9,12 +9,16 @@ public class stockage {
 
     static int initialisation() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 72190ed16bb1514571bade6f4cb789bea2e03b5c
         File dir = new File("data");
         File rep = new File("data/arbres");
         File rep1 = new File("data/personnes");
         if (!(dir.exists())){
             dir.mkdir();
         }
+<<<<<<< HEAD
 =======
     	File dir = new File("data");
         File rep = new File("data/arbres");
@@ -24,6 +28,9 @@ public class stockage {
         }
         
 >>>>>>> a2f7299d4f690e96ef1c2e081fa15569ffa9eb6f
+=======
+
+>>>>>>> 72190ed16bb1514571bade6f4cb789bea2e03b5c
         if(!(rep.exists())) {
             rep.mkdir();
         }
